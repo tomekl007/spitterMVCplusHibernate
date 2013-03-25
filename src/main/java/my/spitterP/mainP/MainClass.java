@@ -48,7 +48,14 @@ public class MainClass {
 		System.out.println(lS2);
 		
 		System.out.println(spitterService.getRecentSpittles(10));
+		System.out.println(spittle.getSpitter().getUsername());
 		
+		System.out.println(spitterDao.getSpitterById(1));
+		
+		
+		Spitter spitter1 = spitterDao.getSpitterByUsername("habuma");
+		System.out.println(spitter1.getSpittles());
+		System.out.println( spitterDao.getSpittlesForSpitter(spitter1));
 		
 		
 	}

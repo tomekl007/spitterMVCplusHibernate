@@ -18,6 +18,20 @@
      <put-attribute name="content" value="/WEB-INF/views/home.jsp" />
      
    </definition>  
+   
+   <definition name="spittles/list" extends="template">
+   <put-attribute name="content" value="/WEB-INF/views/spittles/list.jsp"/>
+   </definition>
+   
+   <definition name="spitters/edit" extends="template">
+   <put-attribute name="content" value="/WEB-INF/views/spitters/edit.jsp"/>
+   </definition>
+   
+   <definition name="spitters/view" extends="template">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/spitters/view.jsp" />
+   </definition>
+   
 <!--<end id="tile_home"/>-->
    <!-- 
    <definition name="login" extends="template">

@@ -63,8 +63,9 @@ public class SpitterServiceImplProgrammatic implements SpitterService {
   }
   
   public Spitter getSpitter(long id) {
-    // TODO Auto-generated method stub
-    return null;
+	  System.out.println("-->getSpitter");
+	 return spitterDao.getSpitterById(1);
+    
   }
   
   public Spitter getSpitter(String username) {

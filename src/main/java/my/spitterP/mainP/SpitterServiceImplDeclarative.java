@@ -50,8 +50,8 @@ public class SpitterServiceImplDeclarative implements SpitterService {
 	  }
 
   public Spitter getSpitter(long id) {
-    // TODO Auto-generated method stub
-    return null;
+    System.out.println("-->getSpitter");
+    return spitterDao.getSpitterById(id);
   }
 
   public void startFollowing(Spitter follower, Spitter followee) {
@@ -64,6 +64,7 @@ public class SpitterServiceImplDeclarative implements SpitterService {
   }
 
   public List<Spittle> getSpittlesForSpitter(Spitter spitter) {
+	
     return spitterDao.getSpittlesForSpitter(spitter);
   }
 

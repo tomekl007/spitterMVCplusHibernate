@@ -10,7 +10,7 @@
   </id>
   <property column="spittleText" name="spittleText" type="java.lang.String" />
   <property column="postedTime" name="postedTime" type="java.util.Date" />
-   <!-- <property column="spitter_id" name="spitter_id" type="my.spitterP.mainP.Spitter" />-->
+<!--   <property column="spitter_id" name="spitter_id" type="java.lang.Long" />-->
   
   
  </class>

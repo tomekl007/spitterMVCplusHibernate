@@ -1,6 +1,8 @@
 package my.spitterP.mainP;
 
 import java.util.List;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,13 +26,29 @@ import javax.persistence.Table;
 })
 public class Spitter {
   private Long id;
+  @Size(min=3, max=20, message=
+	      "Username must be between 3 and 20 characters long.") //<co id="co_enforceSize"/> 
+	  @Pattern(regexp="^[a-zA-Z0-9]+$",
+	        message="Username must be alphanumeric with no spaces")  //<co id="co_noSpaces"/>
   private String username;
+  @Size(min=6, max=20,
+          message="The password must be at least 6 characters long.") //<co id="co_enforceSize"/>
   private String password;
+  @Size(min=3, max=50, message=
+	      "Your full name must be between 3 and 50 characters long.")    //<co id="co_enforceSize"/> 
   private String fullName;
   private List<Spittle> spittles;
+  @Pattern(regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", 
+          message="Invalid email address.") //<co id="co_emailPattern"/>
   private String email;  
   private boolean updateByEmail;
 
+  
+  
+  public Spitter(){
+	  System.out.println("SPitter constructor");
+	  //this.fullName="fullnameeee";
+  }
   @Id
   public Long getId() {
     return id;
@@ -53,10 +71,12 @@ public class Spitter {
   }
 
   public void setPassword(String password) {
+	  System.out.println(password);
     this.password = password;
   }
 
   public void setFullName(String fullName) {
+	  System.out.println(fullName);
     this.fullName = fullName;
   }
 
@@ -92,7 +112,12 @@ public class Spitter {
   
   @Override
   public boolean equals(Object obj) {
+	  if(obj == null)
+		  return false;
     Spitter other = (Spitter) obj;
+    if(other.fullName==null || other.username==null || other.password==null)
+    	return false;
+    System.out.println(obj);
     return other.fullName.equals(fullName) && other.username.equals(username) && other.password.equals(password);
   }
   
@@ -105,6 +130,7 @@ public class Spitter {
   @Override
 	public String toString() {
 	   
-		return this.fullName;
+		return this.fullName +  "  " + this.email + "  " + this.username + "  " + 
+		this.password;
 	}
 }
