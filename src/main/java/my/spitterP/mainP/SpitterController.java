@@ -1,22 +1,26 @@
 package my.spitterP.mainP;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import javax.validation.Valid;
+
+import org.apache.commons.io.FileUtils;
 import org.h2.engine.Session;
 //
-//import org.jets3t.service.S3Service;
-//import org.jets3t.service.acl.AccessControlList;
-//import org.jets3t.service.acl.GroupGrantee;
-//import org.jets3t.service.acl.Permission;
-//import org.jets3t.service.impl.rest.httpclient.RestS3Service;
-//import org.jets3t.service.model.S3Bucket;
-//import org.jets3t.service.model.S3Object;
-//import org.jets3t.service.security.AWSCredentials;
+import org.jets3t.service.S3Service;
+import org.jets3t.service.acl.AccessControlList;
+import org.jets3t.service.acl.GroupGrantee;
+import org.jets3t.service.acl.Permission;
+import org.jets3t.service.impl.rest.httpclient.RestS3Service;
+import org.jets3t.service.model.S3Bucket;
+import org.jets3t.service.model.S3Object;
+import org.jets3t.service.security.AWSCredentials;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -39,11 +43,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class SpitterController {
   private final SpitterService spitterService;
   
- /* @Value("#{s3Properties['s3.accessKey']}")
-  private String s3AccessKey;
-  @Value("#{s3Properties['s3.secretKey']}")
-  private String s3SecretKey;
-  */
+  /*http://aws.amazon.com/s3/*/
+//  @Value("#{s3Properties['s3.accessKey']}")
+//  private String s3AccessKey;
+//  @Value("#{s3Properties['s3.secretKey']}")
+//  private String s3SecretKey;
+//  
   @Inject
   public SpitterController(SpitterService spitterService) {
 	  System.out.println("-->injected "+ spitterService);
@@ -71,7 +76,7 @@ public class SpitterController {
   //<end id="method_new_spitter"/> 
   
   //written by me
-  @RequestMapping(method=RequestMethod.POST)
+  /*@RequestMapping(method=RequestMethod.POST)
   public String addSpitterFromForm( @Valid @ModelAttribute("spitter") Spitter spitter,
 		  BindingResult bindingResult){
 	  
@@ -102,9 +107,9 @@ public class SpitterController {
 	  spitterService.saveSpitter(spitter);
 	  
 	  return "redirect:/spitters/" + spitter.getUsername();
-  }
+  }*/
   
-  /*
+  
   //<start id="method_addSpitterFromForm"/> 
   @RequestMapping(method=RequestMethod.POST)
   public String addSpitterFromForm(@Valid Spitter spitter, 
@@ -119,7 +124,9 @@ public class SpitterController {
     
     try {
       if(!image.isEmpty()) {
+    	  System.out.println("image Is Not Empty");
         validateImage(image);
+        System.out.println("before save image");
         saveImage(spitter.getId() + ".jpg", image);
       }
     } catch (ImageUploadException e) {
@@ -129,8 +136,23 @@ public class SpitterController {
 
     return "redirect:/spitters/" + spitter.getUsername();
   }  
+  
+  
+  static String webRootPath=System.getProperty("User.home");
+  private void saveImage(String filename,MultipartFile image)
+		  throws ImageUploadException{
+	  		try {
+	  			System.out.println("saving image to " +webRootPath+"/resources/"+filename);
+	  			File file=new File(webRootPath+"/resources/"+filename);
+	  			FileUtils.writeByteArrayToFile(file,image.getBytes());
+	  		} catch(IOException e){
+	  			throw new ImageUploadException("Unabletosaveimage",e);
+	  		}
+  	}
+  
+  
   //<end id="method_addSpitterFromForm"/> 
- 
+ /*
   private void saveImage(String filename, MultipartFile image) 
         throws ImageUploadException {
     
@@ -157,13 +179,14 @@ public class SpitterController {
       throw new ImageUploadException("Unable to save image", e);
     }
   }
-
+*/
   private void validateImage(MultipartFile image) {
-    if(!image.getContentType().equals("image/jpeg")) {
+    if(!image.getContentType().equals("image/jpeg") && !image.getContentType().equals("image/pjpeg")) {
+    	System.out.println("throwing only images accepted : " +image.getContentType() );
       throw new ImageUploadException("Only JPG images accepted");
     }
   }
-  */
+  
   //<start id="method_showSpitterProfile"/> 
   @RequestMapping(value="/{username}", method=RequestMethod.GET)
   public String showSpitterProfile(@PathVariable String username,
