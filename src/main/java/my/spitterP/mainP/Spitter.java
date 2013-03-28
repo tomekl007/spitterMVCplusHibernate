@@ -1,5 +1,6 @@
 package my.spitterP.mainP;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,7 +25,7 @@ import javax.persistence.Table;
  
 
 })
-public class Spitter {
+public class Spitter implements Serializable{
   private Long id;
   @Size(min=3, max=20, message=
 	      "Username must be between 3 and 20 characters long.") //<co id="co_enforceSize"/> 

@@ -1,5 +1,6 @@
 package my.spitterP.mainP;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import my.spitterP.mainP.Spitter;
 //@Table(name = "spittle")
 @Entity
 
-public class Spittle {
+public class Spittle implements Serializable {
   private Long id;
   private Spitter spitter;
   

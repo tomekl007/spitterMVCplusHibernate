@@ -7,7 +7,9 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/appServlet/conf.xml
-		             /WEB-INF/spring/appServlet/spitter-security.xml</param-value>
+		             /WEB-INF/spring/appServlet/spitter-security.xml
+		             /WEB-INF/spring/appServlet/remote-service-context-2.xml
+		             /WEB-INF/spring/appServlet/remote-service-context-hessian_burlap.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -48,6 +50,12 @@
     </filter-mapping>
     <!--<end id="filter_mapping_security" />-->
 	
+	
+	
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>*.service</url-pattern>
+	</servlet-mapping>
 	<!-- 
 	<listener>
 <listener-class>

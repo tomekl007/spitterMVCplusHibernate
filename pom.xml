@@ -235,6 +235,14 @@
 		<artifactId>validation-api</artifactId>
 		<version>1.0.0.GA</version>
 	</dependency>
+	
+	
+	<!-- hessian -->
+	<dependency>
+		<groupId>com.caucho</groupId>
+		<artifactId>hessian</artifactId>
+		<version>4.0.7</version>
+	</dependency>
 
 		
 		
