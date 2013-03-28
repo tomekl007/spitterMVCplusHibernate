@@ -6,8 +6,10 @@
      
   <!--<start id="securityAuthorizeTag_access"/>--> 
 	<sec:authorize access="hasRole('ROLE_SPITTER')">
+	
+	User logged in has role_spitter!
 	<!--<co id="co_renderForRoleSpitter"/>-->
-    <s:url value="/spittles" var="spittle_url" />
+   <!--  <s:url value="/spittles" var="spittle_url" />
 	  <sf:form modelAttribute="spittle" 
 	             method="POST" 
 	             action="${spittle_url}">
@@ -21,7 +23,7 @@
 	      <input type="submit" value="Spit it!" 
 	           class="status-btn round-btn disabled" />
 	    </div>           
-	  </sf:form>
+	  </sf:form>-->
 	</sec:authorize>
   <!--<end id="securityAuthorizeTag_access"/>--> 
 </div>

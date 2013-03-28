@@ -6,6 +6,8 @@ import static java.util.Collections.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation=Propagation.REQUIRED)
 public class SpitterServiceImplDeclarative implements SpitterService {
 
+	//@Secured("ROLE_SPITTER","ROLE_ADMIN)
   //<start id="java_addSpittle" /> 
   public void saveSpittle(Spittle spittle) {   
 	
@@ -81,6 +84,8 @@ public class SpitterServiceImplDeclarative implements SpitterService {
     spitterDao.deleteSpittle(id);
   }
 
+  
+  @PostAuthorize("returnObject.spitter.username==principal.username")
   public Spittle getSpittleById(long id) {
     return spitterDao.getSpittleById(id);
   }
