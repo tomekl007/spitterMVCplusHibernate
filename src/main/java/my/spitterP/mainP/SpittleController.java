@@ -53,10 +53,10 @@ public class SpittleController {
   */
   
   
-  /*
+  
   //<start id="method_addNewSpittle"/>
-  @PreAuthorize("(hasRole('ROLE_SPITTER') and #spittle.text.length()<=140) " +
-  		"or hasRole('ROLE_PREMIUM')")
+  //@PreAuthorize("(hasRole('ROLE_SPITTER') and #spittle.text.length()<=140) " +
+  //		"or hasRole('ROLE_PREMIUM')")
   @RequestMapping(method=RequestMethod.POST) //<co id="co_handlePOST"/> 
   @ResponseStatus(HttpStatus.CREATED) // <co id="co_createdResponse" />
   public @ResponseBody Spittle createSpittle(@Valid Spittle spittle, 
@@ -70,7 +70,7 @@ public class SpittleController {
     
     response.setHeader("Location", "/spittles/" + spittle.getId()); //<co id="co_setLocationHeader"/>
     return spittle; //<co id="co_returnSpittle"/>
-  }*/
+  }
   //<end id="method_addNewSpittle"/> 
 /*
   //<start id="method_updateSpittle"/> 
@@ -81,7 +81,7 @@ public class SpittleController {
     return "spittles/view";
   }
   //<end id="method_updateSpittle"/> 
-  
+  */
   //<start id="method_getSpittle"/> 
   @RequestMapping(value="/{id}", method=RequestMethod.GET)
   public String getSpittle(@PathVariable("id") long id,
@@ -98,7 +98,7 @@ public class SpittleController {
     spitterService.deleteSpittle(id);
   }
   //<end id="method_deleteSpittle"/> 
-
+/*
   // Machine-friendly RESTful methods follow
   @RequestMapping(method=RequestMethod.GET, 
                   headers="Accept=application/json")
@@ -112,7 +112,7 @@ public class SpittleController {
   Spittle getSpittle(@PathVariable("id") long id) {
     return spitterService.getSpittleById(id);
   }  
-  
+  */
   //<start id="method_putSpittle"/> 
   @RequestMapping(value="/{id}", method=RequestMethod.PUT)
   @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -121,7 +121,7 @@ public class SpittleController {
     spitterService.saveSpittle(spittle);
   }
   //<end id="method_putSpittle"/>
-  
+  /*
   
   @ExceptionHandler(BindException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)

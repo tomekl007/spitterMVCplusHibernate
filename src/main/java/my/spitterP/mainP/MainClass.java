@@ -40,9 +40,9 @@ public class MainClass {
 	    s2.setFullName("Mateusz Waclaw");
 	    s2.setEmail("email@email");
 	    
-		spitterService.saveSpitter(s2);
+		//spitterService.saveSpitter(s2);
 		s2.setFullName("modify");
-		spitterService.saveSpitter(s2);
+		//spitterService.saveSpitter(s2);
 		
 		List<Spitter> lS2 = spitterDao.findAllSpitters();
 		System.out.println(lS2);
@@ -51,11 +51,19 @@ public class MainClass {
 		System.out.println(spittle.getSpitter().getUsername());
 		
 		System.out.println(spitterDao.getSpitterById(1));
+		Spitter spitter = spitterDao.getSpitterById(1);
+		System.out.println("spitter : " + spitter.getFullName() + " and his spittles: " 
+				 + spitter.getSpittles());
 		
 		
 		Spitter spitter1 = spitterDao.getSpitterByUsername("habuma");
 		System.out.println(spitter1.getSpittles());
 		System.out.println( spitterDao.getSpittlesForSpitter(spitter1));
+		
+		
+		Spittle sp = spitterDao.getSpittleById(1);
+		System.out.println("spittle :" + sp + " belong to: "  + sp.getSpitter());
+		
 		
 		
 	}

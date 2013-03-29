@@ -188,12 +188,13 @@ public class SpitterController {
   }
   
   //<start id="method_showSpitterProfile"/> 
-  @RequestMapping(value="/{username}", method=RequestMethod.GET)
+  /*@RequestMapping(value="/{username}", method=RequestMethod.GET)
   public String showSpitterProfile(@PathVariable String username,
           Model model) {
+	  System.out.println("getSpitter not for REST");
     model.addAttribute(spitterService.getSpitter(username));
     return "spitters/view";
-  }
+  }*/
   //<end id="method_showSpitterProfile"/> 
 /*
   @RequestMapping(value="/{username}", method=RequestMethod.GET,
@@ -218,7 +219,7 @@ public class SpitterController {
     return "redirect:/home";
   }
   */
-  @RequestMapping(value="/{username}/spittles", 
+  /*@RequestMapping(value="/{username}/spittles", 
                   method=RequestMethod.GET)
   public String listSpittlesForSpitter(
                       @PathVariable String username, Model model) {
@@ -233,7 +234,7 @@ public class SpitterController {
     model.addAttribute(spittlesForSpitter);
     return "spittles/list";
   }
-  
+  */
   // Machine-friendly RESTful handler methods follow
   /*@RequestMapping(method = RequestMethod.GET, 
           headers = "Accept=application/json")
@@ -249,14 +250,16 @@ public class SpitterController {
     spitterService.saveSpitter(spitter);
     return spitter;
   }
-
+*/
   //<start id="method_getSpitter_ResponseBody"/> 
   @RequestMapping(value = "/{username}", method = RequestMethod.GET, 
                   headers = {"Accept=text/xml, application/json"})
   public @ResponseBody 
   Spitter getSpitter(@PathVariable String username) {
+	  System.out.println("getSpitter for REST");
     return spitterService.getSpitter(username);
   }
+  /*
   //<end id="method_getSpitter_ResponseBody"/> 
 
 //  @RequestMapping(value = "/{username}", method = RequestMethod.GET, 
@@ -265,7 +268,8 @@ public class SpitterController {
 //    Spitter getSpitterAsXML(@PathVariable String username) {
 //    return spitterService.getSpitter(username);
 //  }
-  
+  */
+  //client can send request in json form, and it will be convert automatically
   //<start id="method_putSpitter"/> 
   @RequestMapping(value = "/{username}", method = RequestMethod.PUT, 
                   headers = "Content-Type=application/json")
@@ -275,7 +279,7 @@ public class SpitterController {
     spitterService.saveSpitter(spitter);
   }
   //<end id="method_putSpitter"/> 
-
+/*
   @RequestMapping(value = "/{username}/spittles", 
                   method = RequestMethod.GET, 
                   headers = "Accept=application/json")
@@ -283,4 +287,14 @@ public class SpitterController {
   List<Spittle> getSpittlesForSpitter(@PathVariable String username) {
     return spitterService.getSpittlesForSpitter(username);
   }*/
+  
+  
+  @RequestMapping(value="/{spitterName}/spittles", 
+          method=RequestMethod.GET)
+  	public @ResponseBody List<Spittle> spittlesForSpitter(
+         @PathVariable("spitterName") String spitterName) {
+	  	Spitter spitter = spitterService.getSpitter(spitterName);
+	  	return spitterService.getSpittlesForSpitter(spitter);
+}
+  
 }

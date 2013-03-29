@@ -7,11 +7,15 @@ import javax.validation.constraints.Size;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 
@@ -97,7 +101,9 @@ public class Spitter implements Serializable{
     this.spittles = spittles;
   }
 
-  @OneToMany(mappedBy = "spitter", cascade=CascadeType.ALL, orphanRemoval=true)
+  @OneToMany(mappedBy = "spitter", cascade=CascadeType.ALL, orphanRemoval=true,
+		  fetch = FetchType.EAGER)
+  @LazyCollection(LazyCollectionOption.FALSE)
   public List<Spittle> getSpittles() {
     return spittles;
   }

@@ -85,7 +85,7 @@ public class SpitterServiceImplDeclarative implements SpitterService {
   }
 
   
-  @PostAuthorize("returnObject.spitter.username==principal.username")
+  //@PostAuthorize("returnObject.spitter.username==principal.username")
   public Spittle getSpittleById(long id) {
     return spitterDao.getSpittleById(id);
   }

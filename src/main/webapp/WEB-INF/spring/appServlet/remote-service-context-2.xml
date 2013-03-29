@@ -11,4 +11,20 @@
     p:serviceInterface="my.spitterP.mainP.SpitterService" />
 
   <!-- <bean id="helloService" class="com.habuma.spitter.service.rmi.HelloServiceImpl"/>-->
+  
+  <!-- spring http invoker service -->
+  <bean class=
+		"org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter"
+		p:service-ref="spitterService"
+		p:serviceInterface="my.spitterP.mainP.SpitterService"/>
+		
+		<bean id="urlMapping" class=
+			"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+			<property name="mappings">
+			<value>
+				/spitter.service=httpInvokerSpitterService
+			</value>
+			</property>
+		</bean>
+  
 </beans>
