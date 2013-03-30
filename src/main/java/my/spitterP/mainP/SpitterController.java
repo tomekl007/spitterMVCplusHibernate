@@ -241,7 +241,7 @@ public class SpitterController {
   public @ResponseBody List<Spitter> allSpitters() {
     return spitterService.getAllSpitters();
   }
-
+*/
   @RequestMapping(method = RequestMethod.POST, 
                   headers = "Content-Type=application/json")
   @ResponseStatus(HttpStatus.CREATED)
@@ -250,7 +250,7 @@ public class SpitterController {
     spitterService.saveSpitter(spitter);
     return spitter;
   }
-*/
+
   //<start id="method_getSpitter_ResponseBody"/> 
   @RequestMapping(value = "/{username}", method = RequestMethod.GET, 
                   headers = {"Accept=text/xml, application/json"})

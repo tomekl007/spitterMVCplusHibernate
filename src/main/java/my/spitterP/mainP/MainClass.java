@@ -4,6 +4,9 @@ package my.spitterP.mainP;
 
 import java.util.List;
 
+import my.spitterP.mainP.alerts.AlertService;
+import my.spitterP.mainP.alerts.AlertServiceImpl;
+
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 
@@ -64,7 +67,12 @@ public class MainClass {
 		Spittle sp = spitterDao.getSpittleById(1);
 		System.out.println("spittle :" + sp + " belong to: "  + sp.getSpitter());
 		
+		sp.setText("modyfied");
+		spitterDao.saveSpittle(sp);
 		
+		
+		AlertService as = new AlertServiceImpl();
+		as.sendSpittleAlert(sp);
 		
 	}
 

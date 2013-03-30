@@ -88,6 +88,7 @@ public void addSpitter(Spitter spitter) {
   }
 
   public void deleteSpittle(long id) {
+	  System.out.println("deleteing spittle with id : " + id);
     template.delete(getSpittleById(id));
   }
 

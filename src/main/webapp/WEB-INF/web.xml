@@ -8,8 +8,9 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/appServlet/conf.xml
 		             /WEB-INF/spring/appServlet/spitter-security.xml
-		             /WEB-INF/spring/appServlet/remote-service-context-2.xml
-		             /WEB-INF/spring/appServlet/remote-service-context-hessian_burlap.xml</param-value>
+		           
+		             /WEB-INF/spring/appServlet/remote-service-context-hessian_burlap.xml
+		             /WEB-INF/spring/appServlet/messaging-context.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -56,6 +57,28 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.service</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	<!-- for resolving hidden field from http post request and
+	mapping them to put or delete -->
+	 <!--<start id="filter_hiddenHttpMethod" />-->
+   <!--  <filter>
+        <filter-name>httpMethodFilter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.HiddenHttpMethodFilter
+        </filter-class>
+    </filter>-->
+    <!--<end id="filter_hiddenHttpMethod" />-->
+    
+        <!--<start id="filterMapping_hiddenHttpMethod" />-->
+    <!-- <filter-mapping>
+        <filter-name>httpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+    <!--<end id="filterMapping_hiddenHttpMethod" />-->
+    
+    
 	<!-- 
 	<listener>
 <listener-class>
