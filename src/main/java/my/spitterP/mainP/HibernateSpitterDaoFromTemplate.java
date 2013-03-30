@@ -48,12 +48,12 @@ public void addSpitter(Spitter spitter) {
 
   public List<Spittle> getSpittlesForSpitter(
           Spitter spitter) {
-  
-	  String queryAll = "SELECT s FROM Spittle s  ";
-
-	 ArrayList<Spittle> s = (ArrayList<Spittle>) template.find(queryAll);
-	  System.out.println("find spittles : "  + s.toString());
-	  
+//  
+//	  String queryAll = "SELECT s FROM Spittle s  ";
+//
+//	 ArrayList<Spittle> s = (ArrayList<Spittle>) template.find(queryAll);
+//	  System.out.println("find spittles : "  + s.toString());
+//	  
 	  
 	  //---
 	 // String queryString = "SELECT s FROM Spittle s WHERE s.spitter.id = 1 ";
@@ -65,16 +65,20 @@ public void addSpitter(Spitter spitter) {
 	//  System.out.println("find spittles : "  + s2.toString());
 	  
 	  
-	  System.out.println("spitter id = "  + spitter.getId());
-	  String queryString3 = "SELECT distinct s FROM Spitter s ";
-	  Spitter sp2  = template.get(Spitter.class, spitter.getId());
-	  System.out.println(sp2.getSpittles());
-	  ArrayList<Spitter> s3 = (ArrayList<Spitter>) template.find(queryString3);
-	  System.out.println(s3.toString());
-	  System.out.println(s3.get(0).getSpittles());
-	
+//	  System.out.println("spitter id = "  + spitter.getId());
+//	  String queryString3 = "SELECT distinct s FROM Spitter s ";
+//	  Spitter sp2  = template.get(Spitter.class, spitter.getId());
+//	  System.out.println(sp2.getSpittles());
+//	  ArrayList<Spitter> s3 = (ArrayList<Spitter>) template.find(queryString3);
+//	  System.out.println(s3.toString());
+//	  System.out.println(s3.get(0).getSpittles());
+//	
+	  String query = "SELECT s FROM Spittle sp INNER JOIN Spitter sr WHERE sp.spitter.id=?";
+	  List<Spittle> spittles = template.find(query,spitter.getId());
+	  System.out.println("find  spittles for spitter : " + spittles);
+			  return spitter.getSpittles();
 	  
-	  return s;
+	
 	  
   }
   

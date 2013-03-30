@@ -2,6 +2,7 @@ package my.spitterP.mainP;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import my.spitterP.mainP.alerts.AlertMessageReceiver;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
-	
+	/*
 	AlertService alertService;
 	@Inject
 	public void setAlertService(AlertService alertService) {
@@ -56,8 +57,27 @@ public class AccountController {
 		 	return "/";
 
 	}
+	 
+	 
+	 AlertService alertServiceRpc;
+		@Resource(name="alertServiceRpc")
+		public void setAlertServiceRpc(AlertService alertServiceRpc) {
+			this.alertServiceRpc = alertServiceRpc;
+		}
+		
+		 @RequestMapping(value="/send_pass_by_mail", 
+		          method=RequestMethod.GET)
+		  	public String sendByEmail() {
+			 	System.out.println("resending by email ");
+			 	Spittle s = new Spittle();
+			 	s.setSpittleText("wyslany spittle");
+			 	alertServiceRpc.sendSpittleAlert(s);
+			 	
+			 	return "/";
 
+		}
 
-	
+*/
+	 
 
 }

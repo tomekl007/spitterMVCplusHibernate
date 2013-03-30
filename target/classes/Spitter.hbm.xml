@@ -13,5 +13,13 @@
   <property column="fullname" name="fullName" type="java.lang.String" />
   <property column="email" name="email" type="java.lang.String" />
   <property column="update_by_email" name="updateByEmail" type="boolean" />
+  
+ <list name="spittles" table="spittle" cascade="all">
+               
+            <key column="spitter_id" not-null="true" />
+            <index column="spitter_id_index"/> 
+            <one-to-many class="my.spitterP.mainP.Spittle" />
+     </list>
+  
  </class>
 </hibernate-mapping>

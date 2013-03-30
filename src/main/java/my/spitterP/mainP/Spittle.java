@@ -19,6 +19,9 @@ public class Spittle implements Serializable {
   private Long id;
   private Spitter spitter;
   
+  
+  @ManyToOne
+  @JoinColumn(name = "SPITTER_ID")
   public Spitter getSpitter() {
 	return spitter;
 }
@@ -26,22 +29,22 @@ public void setSpitter(Spitter spitter) {
 	this.spitter = spitter;
 }
 
-private String text;
-  public String getText() {
-	return text;
-}
-public void setText(String text) {
-	this.text = text;
-}
+private String spittleText;
+//  public String getText() {
+//	return spittleText;
+//}
+//public void spittleText(String text) {
+//	this.text = text;
+//}
 
-private Date when;
+private Date postedTime;
 
-  public Date getWhen() {
-	return when;
-}
-public void setWhen(Date when) {
-	this.when = when;
-}
+//  public Date getWhen() {
+//	return when;
+//}
+//public void setWhen(Date when) {
+//	this.when = when;
+//}
 public Spittle() {
     this.spitter = new Spitter();  // HARD-CODED FOR NOW
     this.spitter.setId((long)1);
@@ -56,34 +59,33 @@ public Spittle() {
   }
   
   public String getSpittleText() {
-    return this.text;
+    return this.spittleText;
   }
   
   public void setSpittleText(String text) {
-    this.text = text;
+    this.spittleText = text;
   }
   
   public Date getPostedTime() {
-    return this.when;
+    return this.postedTime;
   }
 
-  public void setPostedTime(Date when) {
-    this.when = when;
+  public void setPostedTime(Date postedTime) {
+    this.postedTime = postedTime;
   }
 
-  @ManyToOne
- @JoinColumn(name = "SPITTER_ID")
-  public Spitter getSpitter_id() {
-    return this.spitter;
-  }
-
-  public void setSpitter_id(Spitter spitter) {
-    this.spitter = spitter;
-  }
+  
+//  public Spitter getSpitter_id() {
+//    return this.spitter;
+//  }
+//
+//  public void setSpitter_id(Spitter spitter) {
+//    this.spitter = spitter;
+//  }
   
   @Override
 	public String toString() {
 		
-		return text;
+		return spittleText;
 	}
 }

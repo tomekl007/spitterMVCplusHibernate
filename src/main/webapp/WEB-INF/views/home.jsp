@@ -30,8 +30,8 @@
       <span class="spittleListText">
         <a href="${spitter_url}">              <!--<co id="cp_spitter_properties"/>-->
           <c:out value="${spittle.spitter.username}" /></a>
-          - <c:out value="${spittle.text}" /><br/>          
-         <small><fmt:formatDate value="${spittle.when}" 
+          - <c:out value="${spittle.spittleText}" /><br/>          
+         <small><fmt:formatDate value="${spittle.postedTime}" 
 	                            pattern="hh:mma MMM d, yyyy" /></small>
       </span></li>
     </c:forEach>

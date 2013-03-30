@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 
 
 
-@Component
+//@Component
 public class AlertMessageReceiver {
-  @Autowired
+  //@Autowired
   JmsTemplate jmsTemplate;
   
   public Spittle getAlert() {

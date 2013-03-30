@@ -22,17 +22,17 @@ public class MainClass {
 		
 		SpitterDao spitterDao = ctx.getBean("databaseFacade", SpitterDao.class);
 		
-		Spitter s = spitterDao.getSpitterById(1);
-		System.out.println(s.getFullName());
-		List<Spitter> lS = spitterDao.findAllSpitters();
-		System.out.println(lS);
+		//Spitter s = spitterDao.getSpitterById(1);
+		//System.out.println(s.getFullName());
+		//List<Spitter> lS = spitterDao.findAllSpitters();
+		//System.out.println(lS);
 		
 		//List<Spittle> lS2 = spitterDao.getRecentSpittle();
 		//System.out.println(lS2);
 		
 		
-		Spittle spittle = spitterDao.getSpittleById(1);
-		System.out.println(spittle.getSpittleText());
+	//	Spittle spittle = spitterDao.getSpittleById(1);
+		//System.out.println(spittle.getSpittleText());
 		SpitterService spitterService = ctx.getBean("spitterServiceDecl", SpitterService.class);
 		
 		Spitter s2 = new Spitter();
@@ -51,7 +51,7 @@ public class MainClass {
 		System.out.println(lS2);
 		
 		System.out.println(spitterService.getRecentSpittles(10));
-		System.out.println(spittle.getSpitter().getUsername());
+		//System.out.println(spittle.getSpitter().getUsername());
 		
 		System.out.println(spitterDao.getSpitterById(1));
 		Spitter spitter = spitterDao.getSpitterById(1);
@@ -67,12 +67,15 @@ public class MainClass {
 		Spittle sp = spitterDao.getSpittleById(1);
 		System.out.println("spittle :" + sp + " belong to: "  + sp.getSpitter());
 		
-		sp.setText("modyfied");
+		sp.setSpittleText("modyfied");
 		spitterDao.saveSpittle(sp);
 		
+		System.out.println("getem : " + spitter.getSpittles());
+		spitterService.getSpittlesForSpitter(spitter);
 		
-		AlertService as = new AlertServiceImpl();
-		as.sendSpittleAlert(sp);
+		
+		//AlertService as = new AlertServiceImpl();
+		//as.sendSpittleAlert(sp);
 		
 	}
 

@@ -25,8 +25,8 @@
                align="middle" 
                onError="this.src='<s:url value="/resources/images"/>/spitter_avatar.png';"/></td>
       <td><a href="${spitter_url}">${spittle.spitter.username}</a>
-          <small><c:out value="${spittle.text}" /><br/><small>
-          <fmt:formatDate value="${spittle.when}" pattern="hh:mma MMM d, yyyy" />
+          <small><c:out value="${spittle.spittleText}" /><br/><small>
+          <fmt:formatDate value="${spittle.postedTime}" pattern="hh:mma MMM d, yyyy" />
           </small></small>
       <s:url value="/spittles/${spittle.id}" var="spittle_url" />
       <sf:form method="delete" action="${spittle_url}" 

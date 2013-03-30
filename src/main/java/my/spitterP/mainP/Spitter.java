@@ -6,6 +6,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -22,13 +23,13 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "spitter")
-@NamedQueries({
-	@NamedQuery(name="Spitter.findById", 
-			    query="select distinct s from Spitter s " +
-			    		" s.id = :id")
+//@NamedQueries({
+	//@NamedQuery(name="Spitter.findById", 
+	//		    query="select distinct s from Spitter s " +
+	//		    		" s.id = :id")
  
 
-})
+//})
 public class Spitter implements Serializable{
   private Long id;
   @Size(min=3, max=20, message=
@@ -46,6 +47,9 @@ public class Spitter implements Serializable{
   @Pattern(regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", 
           message="Invalid email address.") //<co id="co_emailPattern"/>
   private String email;  
+  
+  
+  
   private boolean updateByEmail;
 
   
@@ -108,11 +112,14 @@ public class Spitter implements Serializable{
     return spittles;
   }
   
+  
+
   public void setUpdateByEmail(boolean updateByEmail) {
       this.updateByEmail = updateByEmail;
   }
   
-  public boolean isUpdateByEmail() {
+  @Column(name="update_by_email")
+  public boolean getUpdateByEmail() {
     return updateByEmail;
   }
   

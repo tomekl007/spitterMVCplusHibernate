@@ -12,6 +12,10 @@
   <property column="postedTime" name="postedTime" type="java.util.Date" />
    <!-- <property column="spitter_id" name="spitter_id" type="my.spitterP.mainP.Spitter" />-->
   
+   <many-to-one name="spitter" class="my.spitterP.mainP.Spittle" fetch="select">
+            <column name="spitter_id" not-null="true" />
+   </many-to-one>
+  
   
  </class>
 </hibernate-mapping>

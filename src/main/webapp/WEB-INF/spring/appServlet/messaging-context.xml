@@ -3,6 +3,7 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:jms="http://www.springframework.org/schema/jms"
  xmlns:amq="http://activemq.apache.org/schema/core"
+  xmlns:p="http://www.springframework.org/schema/p"
  xsi:schemaLocation="http://activemq.apache.org/schema/core 
         http://activemq.apache.org/schema/core/activemq-core.xsd
 		http://www.springframework.org/schema/jms 
@@ -35,5 +36,19 @@
 	
 	<bean id="alertService"
 			class="my.spitterP.mainP.alerts.AlertServiceImpl"/>
+			
+			
+			<!-- jms rpc -->
+			
+			<bean id="alertServiceExporter"
+				class="org.springframework.jms.remoting.JmsInvokerServiceExporter"
+				p:service-ref="alertServiceRpc"
+		p:serviceInterface="my.spitterP.mainP.alerts.AlertService"/>
+		
+		
+  		<jms:listener-container connection-factory="connectionFactory">
+    		<jms:listener destination="spitter.alert.queue"
+         		ref="alertServiceExporter" />
+  		</jms:listener-container> 
 
 </beans>
