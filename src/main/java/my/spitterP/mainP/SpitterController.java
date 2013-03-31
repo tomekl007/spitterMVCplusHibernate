@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import javax.inject.Inject;
 
@@ -296,5 +298,38 @@ public class SpitterController {
 	  	Spitter spitter = spitterService.getSpitter(spitterName);
 	  	return spitterService.getSpittlesForSpitter(spitter);
 }
+  	
+
+  ScheduledBean scheduledBean;
+  @Inject
+  public void setScheduledBean(ScheduledBean scheduledBean) {
+	this.scheduledBean = scheduledBean;
+}
+
+
+
+  @RequestMapping(value="/async", 
+          method=RequestMethod.GET)
+  	public void performAsyncTask() {
+	  	
+	  
+	 Future<Long> result = scheduledBean.performSomeReallyHairyMath((long)1);
+	 
+	 System.out.println("normal flow");
+	 
+	 try {
+		System.out.println(result.get());
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ExecutionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
+	 System.out.println("after getting result");
+	  	
+}
+  	
+  
   
 }

@@ -4,13 +4,16 @@ import static java.lang.Math.*;
 import static java.util.Collections.*;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.scheduling.annotation.AsyncResult;
 
 
 
@@ -89,4 +92,8 @@ public class SpitterServiceImplDeclarative implements SpitterService {
   public Spittle getSpittleById(long id) {
     return spitterDao.getSpittleById(id);
   }
+  
+  
+  
+  
 }
